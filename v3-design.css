@@ -1,0 +1,187 @@
+/* V3 composition layer: ownable, removable overrides over the V2 source. */
+:root {
+  --v3-plum: #512f48;
+  --v3-plum-deep: #342735;
+  --v3-sage: #e4e8de;
+  --v3-green: #344439;
+  --v3-cream: #f8f4ed;
+  --v3-ink: #302d2f;
+  --v3-rust: #925039;
+  --v3-motion-fast: 160ms;
+  --v3-motion: 220ms;
+}
+
+html { scroll-behavior: smooth; }
+body { color: var(--v3-ink); background: var(--v3-cream); }
+.main { background: var(--v3-cream); }
+.section { padding: clamp(64px, 7vw, 92px) 24px; border: 0; scroll-margin-top: 104px; }
+.section > .inside { max-width: 1180px; }
+.section h2 { font-size: clamp(32px, 3.5vw, 48px); line-height: 1.12; letter-spacing: -.035em; max-width: 18ch; margin-bottom: 24px; color: var(--v3-plum-deep); }
+.section > .inside > p:first-of-type { max-width: 64ch; }
+.section.alt { background: #f0ebe5; }
+.section#HM01 { padding-top: 26px; padding-bottom: 0; }
+.section#HM02 { padding-top: 66px; }
+
+/* The four principles finish the photographic opening as one strong plum band. */
+#main #HM01 .principles {
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0;
+  max-width: 1180px; margin: 0 auto; padding: 22px 24px;
+  list-style: none; background: var(--v3-plum) !important; color: #fff8ee;
+  border-radius: 0 0 18px 18px;
+}
+#main #HM01 .principles li { display: flex; align-items: center; gap: 12px; padding: 10px 17px; min-width: 0; }
+#main #HM01 .principles li + li { border-left: 1px solid #ffffff42 !important; }
+#main #HM01 .principles svg { width: 38px; height: 38px; flex: 0 0 38px; }
+#main #HM01 .principles strong { display: block; font: 600 19px/1.25 "Cormorant Garamond", Georgia, serif; }
+#main #HM01 .principles span { display: block; margin-top: 3px; font-size: 13px; line-height: 1.4; color: #f1e7eb !important; }
+
+/* Topic cards use a full-card action affordance with a clear arrow. */
+.home-topic-grid { gap: 14px; margin-top: 28px; }
+.home-topic-grid .topic-card {
+  position: relative; min-height: 126px; padding: 22px 46px 20px 22px;
+  border: 1px solid #d6c9c0; border-radius: 12px; background: #fffdfa;
+  color: var(--v3-plum-deep); box-shadow: 0 3px 12px #3427350a;
+  transition: transform var(--v3-motion-fast) ease, border-color var(--v3-motion-fast) ease, box-shadow var(--v3-motion-fast) ease, background var(--v3-motion-fast) ease;
+  text-align: left; font: inherit;
+}
+.home-topic-grid .topic-card::after { content: ''; position: absolute; right: 18px; top: 20px; width: 17px; height: 12px; background: var(--v3-rust); clip-path: polygon(0 41%, 56% 41%, 56% 8%, 100% 50%, 56% 92%, 56% 59%, 0 59%); }
+.home-topic-grid .topic-card:hover { transform: translateY(-2px); border-color: #a98391; background: #fff8f2; box-shadow: 0 9px 24px #34273514; }
+.home-topic-grid .topic-card:focus-visible { outline: 3px solid #925039; outline-offset: 3px; }
+.home-topic-grid .topic-card > span { margin-top: 9px; color: #5e5559; font-size: 14px; line-height: 1.45; }
+
+/* V2 owns the plum route surface, its texture and its numbered path. */
+
+#HM03 { background: #fffdfa; }
+#HM03 .about-halves { align-items: center; gap: clamp(32px, 6vw, 82px); }
+#HM03 .about-copy { max-width: 520px; }
+#HM03 .about-copy h2 { max-width: 12ch; }
+#HM03 .about-copy .lead { font: 24px/1.35 "Cormorant Garamond", Georgia, serif; color: var(--v3-plum); }
+#HM03 .about-video { border-radius: 16px; overflow: hidden; }
+
+#HM07_VIDEO { background: #f3eee8; }
+#main #HM08 { background: #3c5148 !important; color: #fff8ee !important; }
+#main #HM08 :is(h2,p,summary) { color: #fff8ee !important; }
+#HM_WHY { background: #fffdfa; }
+#HM_WHY .why-list { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 26px; margin-top: 34px; }
+#HM_WHY .why-list > div { padding: 24px 24px 18px; border-top: 2px solid #b38a78; }
+#HM_WHY .why-list h3 { min-height: 1.2em; white-space: normal; font: 600 clamp(19px,1.5vw,21px)/1.2 "Cormorant Garamond",Georgia,serif; color: var(--v3-plum-deep); }
+#HM_WHY .why-list p { font-size: 15px; line-height: 1.6; }
+
+#HM11 { padding: 42px 24px; background: var(--v3-plum); color: #fff8ee; }
+#HM11 .v2-appeal { max-width: 1180px; padding: 0; border: 0; background: transparent; display: flex; align-items: center; justify-content: space-between; gap: 28px; }
+#HM11 h2, #HM11 h3 { color: #fff8ee; }
+#HM11 .button { flex: 0 0 auto; }
+
+#HM_SESSION { background: #fffdfa; }
+#main #HM_SESSION .session-composition { display: grid; grid-template-columns: minmax(0,1.05fr) minmax(0,.95fr); gap: clamp(28px,5vw,64px); align-items: start; }
+#main #HM_SESSION .session-grid { display: grid; grid-template-columns: 1fr; gap: 0; margin: 0; }
+#main #HM_SESSION .session-grid > div { padding: 16px 0 14px; border: 0; border-top: 1px solid #d2c8bd; border-radius: 0; background: transparent; }
+#main #HM_SESSION .session-grid h3 { margin: 0; font: 600 23px/1.2 "Cormorant Garamond",Georgia,serif; color: var(--v3-plum-deep); }
+#main #HM_SESSION .session-grid p { margin: 7px 0 0; font-size: 15px; }
+#main #HM_SESSION .meeting-location { margin: 15px 0 0; padding: 6px 0 6px 16px; border-left: 2px solid #b38a78; }
+#main #HM_SESSION .session-media .session-video-fallback { display: inline-flex; margin-top: 12px; }
+#main #HM_SESSION .session-reading { margin: 14px 0 0; }
+
+#main #HM05 { background: #344439 !important; color: #fff8ee !important; }
+#main #HM05 h2, #main #HM05 h3 { color: #fff8ee !important; }
+#main #HM05 .method-list { display: block; margin-top: 22px; }
+#main #HM05 .method { display: grid; grid-template-columns: minmax(230px,.85fr) minmax(0,1.5fr) max-content; align-items: center; gap: 20px; padding: 19px 0; border: 0 !important; border-top: 1px solid #ffffff52 !important; border-radius: 0; background: transparent !important; }
+#main #HM05 .method h3 { margin: 0; font: 600 24px/1.2 "Cormorant Garamond",Georgia,serif; }
+#main #HM05 .method p { margin: 0; color: #f3f1e9 !important; }
+#main #HM05 .method .button { background: transparent; border-color: #e5ebe3 !important; color: #fff8ee !important; }
+#main #HM05 .method .button:hover { background: #fff8ee; color: var(--v3-green); }
+
+#HM_CREDENTIALS, #HM06, #HM07_TEXT { background: #fffdfa; }
+#HM10 { background: #f2ebe4; padding-top: 52px; padding-bottom: 52px; }
+#HM10 h2 { font-size: clamp(30px,3vw,42px); margin-bottom: 18px; }
+#main #HM10 .article-preview { max-width: 850px; display: grid; grid-template-columns: minmax(0,.9fr) minmax(0,1.4fr) max-content; align-items: center; gap: 18px 26px; padding: 20px 24px; border: 1px solid #d2c8bd !important; border-radius: 8px; background: #fffdfa; }
+#main #HM10 .article-preview h3, #main #HM10 .article-preview p { margin: 0; }
+#main #HM10 .article-preview h3 { font: 600 23px/1.2 "Cormorant Garamond",Georgia,serif; color: var(--v3-plum-deep); }
+#main #HM10 .article-preview + .actions { margin-top: 12px; }
+.footer { background: var(--v3-plum-deep); color: #fff8ee; }
+.footer h2 { color: #fff8ee; font: 600 23px/1.2 "Cormorant Garamond",Georgia,serif; }
+.footer a { color: #fff8ee; }
+.footer .small { color: #e8dce3; }
+
+.primary, .button.primary { background: var(--v3-rust); border-color: var(--v3-rust); color: #fffdfa; }
+body.concept-mari #app :is(.button,button) { border-radius: 8px; transition: color var(--v3-motion-fast) ease, background-color var(--v3-motion-fast) ease, border-color var(--v3-motion-fast) ease, box-shadow var(--v3-motion-fast) ease; }
+a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px solid #925039; outline-offset: 4px; }
+
+@media (max-width: 900px) {
+  #main #HM01 .principles { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  #main #HM01 .principles li:nth-child(3) { border-left: 0; }
+  #main #HM01 .principles li:nth-child(n+3) { border-top: 1px solid #ffffff42; }
+  #HM_WHY .why-list { gap: 14px; }
+  #HM_WHY .why-list > div { padding: 18px 14px; }
+}
+@media (max-width: 640px) {
+  .section { padding: 48px 20px; scroll-margin-top: 84px; }
+  .section#HM01 { padding: 16px 0 0; }
+  .section#HM01 > .inside { padding: 0 20px; }
+  #main #HM01 .principles { padding: 12px 14px; border-radius: 0; }
+  #main #HM01 .principles li { padding: 12px 8px; gap: 8px; }
+  #main #HM01 .principles svg { width: 28px; height: 28px; flex-basis: 28px; }
+  #main #HM01 .principles strong { font-size: 16px; }
+  #main #HM01 .principles span { font-size: 12px; }
+  .home-topic-grid { grid-template-columns: 1fr; gap: 10px; }
+  .home-topic-grid .topic-card { min-height: auto; padding: 18px 44px 18px 18px; }
+  #HM03 .about-halves, #HM_WHY .why-list { grid-template-columns: 1fr; }
+  #main #HM_SESSION .session-composition { grid-template-columns: 1fr; }
+  #main #HM05 .method { grid-template-columns: 1fr; gap: 8px; }
+  #main #HM10 .article-preview { grid-template-columns: 1fr; }
+  #HM_WHY .why-list h3 { min-height: 0; white-space: normal; }
+  #HM11 { padding: 32px 20px; }
+  #HM11 .v2-appeal { display: grid; }
+  #HM10 { padding-top: 40px; padding-bottom: 40px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+}
+
+/* Layered V2 rules use !important; these same-layer overrides deliberately win. */
+@layer editorial {
+  #main #HM01 .principles { background: #512f48 !important; color: #fff8ee !important; }
+  #main #HM01 .principles :is(span,strong) { color: #fff8ee !important; }
+  #main #HM01 .principles li + li { border-left-color: #ffffff52 !important; }
+
+  #main #HM02 .topic-card::after {
+    content: '' !important; display: block !important; position: absolute !important;
+    inset: 25px 4px auto auto !important; width: 15px !important; height: 10px !important;
+    border: 0 !important; background: var(--v3-rust) !important;
+    clip-path: polygon(0 40%, 57% 40%, 57% 4%, 100% 50%, 57% 96%, 57% 60%, 0 60%) !important;
+    transform: none !important;
+  }
+
+  #main #HM04 .v2-path .v2-step-number {
+    display: block; margin-bottom: 12px; color: #efd0bb;
+    font: 600 14px/1.4 Manrope,Arial,sans-serif; letter-spacing: .09em;
+  }
+  #main #HM04 .v2-path li::before { content: none !important; display: none !important; }
+
+  #main #HM_WHY .why-list h3 {
+    max-width: 160px !important; min-height: 2.4em !important; white-space: normal !important;
+    font: 600 22px/1.2 "Cormorant Garamond",Georgia,serif !important;
+  }
+  #main #HM_WHY .why-list > div { min-width: 0; }
+
+  body #main #HM05.section { background: #344439 !important; background-image: none !important; color: #fff8ee !important; }
+  body #main #HM05.section :is(h2,h3,p) { color: #fff8ee !important; }
+  #main #HM05 .method-list { display: block !important; grid-template-columns: 1fr !important; gap: 0 !important; }
+  #main #HM05 .method {
+    display: grid !important; grid-template-columns: minmax(230px,.85fr) minmax(0,1.5fr) max-content !important;
+    align-items: center !important; gap: 20px !important; padding: 19px 0 !important;
+    border: 0 !important; border-top: 1px solid #ffffff52 !important; border-radius: 0 !important;
+    background: transparent !important;
+  }
+  #main #HM05 .method h3 { grid-row: auto !important; margin: 0 !important; }
+  #main #HM05 .method p { margin: 0 !important; color: #f3f1e9 !important; }
+  #main #HM05 .method a.button { color: #fff8ee !important; border-color: #e5ebe3 !important; }
+  #main #HM05 .method a.button:hover { color: #344439 !important; background: #fff8ee !important; }
+  #main #HM_SESSION a.session-video-fallback { color: #512f48 !important; background: #fffdfa !important; border-color: #925039 !important; }
+
+  @media (max-width: 640px) {
+    #main #HM_WHY .why-list h3 { min-height: 0 !important; }
+    #main #HM05 .method { grid-template-columns: minmax(0,1fr) !important; gap: 8px !important; }
+    #main #HM05 .method h3 { grid-row: auto !important; }
+  }
+}
