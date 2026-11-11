@@ -179,9 +179,23 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
   #main #HM05 .method a.button:hover { color: #344439 !important; background: #fff8ee !important; }
   #main #HM_SESSION a.session-video-fallback { color: #512f48 !important; background: #fffdfa !important; border-color: #925039 !important; }
 
+  @media (max-width: 840px) and (min-width: 641px) {
+    body.concept-b #main #HM05.section .method {
+      grid-template-columns: minmax(150px,.8fr) minmax(0,1.2fr) !important;
+      min-width: 0 !important;
+    }
+    body.concept-b #main #HM05.section .method > h3 { grid-column: 1 !important; grid-row: span 2 !important; min-width: 0 !important; }
+    body.concept-b #main #HM05.section .method > p { grid-column: 2 !important; grid-row: 1 !important; min-width: 0 !important; }
+    body.concept-b #main #HM05.section .method > a { grid-column: 2 !important; grid-row: 2 !important; min-width: 0 !important; }
+  }
   @media (max-width: 640px) {
     #main #HM_WHY .why-list h3 { min-height: 0 !important; }
-    #main #HM05 .method { grid-template-columns: minmax(0,1fr) !important; gap: 8px !important; }
-    #main #HM05 .method h3 { grid-row: auto !important; }
+    body.concept-b #main #HM05.section .method {
+      grid-template-columns: minmax(0,1fr) !important; gap: 8px !important;
+      min-width: 0 !important;
+    }
+    body.concept-b #main #HM05.section .method > :is(h3,p,a) {
+      grid-column: 1 !important; grid-row: auto !important; min-width: 0 !important; width: auto !important;
+    }
   }
 }
