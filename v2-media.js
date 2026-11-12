@@ -52,22 +52,45 @@
     const d = ensureDialog(); trigger = button; scale = 1;
     d.querySelector('[data-title]').textContent = title;
     d.querySelector('[data-zoom-tools]').hidden = false; d.querySelector('[data-zoom="reset"]').textContent = '100%';
-    const img = document.createElement('img'); img.className = 'v3-original'; img.src = src; img.alt = title;
-    d.querySelector('[data-body]').replaceChildren(img); if (!d.open) d.showModal(); d.querySelector('[data-media-close]').focus();
+    const body = d.querySelector('[data-body]');
+    const img = document.createElement('img'); img.className = 'v3-original'; img.alt = title;
+    const status = document.createElement('p'); status.className = 'v3-original-status'; status.setAttribute('role','status');
+    const loading = () => { status.hidden = false; status.textContent = 'Загружаю оригинал сообщения…'; };
+    loading();
+    img.addEventListener('load', () => { status.hidden = true; });
+    img.addEventListener('media-unavailable', () => {
+      status.textContent = 'Изображение не загрузилось. ';
+      const retry = document.createElement('button'); retry.type = 'button'; retry.textContent = 'Попробовать ещё раз';
+      retry.onclick = () => { loading(); const url = new URL(src,document.baseURI); url.searchParams.set('retry',Date.now()); img.src = url.href; };
+      status.append(retry);
+    });
+    body.replaceChildren(status,img); img.src = src;
+    if (!d.open) d.showModal(); d.querySelector('[data-media-close]').focus();
   }
   function openVideo(card, button) {
     const src = card?.dataset.videoSrc; if (!src) return;
     const d = ensureDialog(); trigger = button; d.querySelector('[data-title]').textContent = `Видеоотзыв: ${card.dataset.topic}`;
     d.querySelector('[data-zoom-tools]').hidden = true;
     const v = document.createElement('video'); v.className = 'v3-dialog-video'; v.controls = true; v.playsInline = true; v.preload = 'metadata'; v.src = src;
-    if (card.dataset.poster) v.poster = card.dataset.poster;
+    const preview = card.querySelector('.v3-video-card__poster img');
+    if (card.dataset.poster) v.poster = preview?.currentSrc || card.dataset.poster;
     const body = d.querySelector('[data-body]'), error = document.createElement('div');
     error.className = 'v3-media-error'; error.hidden = true; error.setAttribute('role','status'); error.setAttribute('aria-live','polite');
     error.innerHTML = 'Этот ролик не запустился в текущем просмотре. <a target="_blank" rel="noopener noreferrer">Открыть файл видео отдельно</a> или закройте окно и продолжите просмотр остальных отзывов.';
     error.querySelector('a').href = src;
     const showError = () => { if (d.open && v.isConnected) error.hidden = false; };
-    v.addEventListener('error', showError); body.replaceChildren(v, error);
-    if (!d.open) d.showModal(); v.play().catch(showError); d.querySelector('[data-media-close]').focus();
+    let retried = false;
+    function start() { v.play().catch(e => { if (e.name !== 'AbortError' && e.name !== 'NotSupportedError') showError(); }); }
+    v.addEventListener('error', () => {
+      if (!d.open || !v.isConnected) return;
+      if (retried) { showError(); return; }
+      retried = true;
+      const url = new URL(src,document.baseURI); url.searchParams.set('media-retry','1');
+      v.src = url.href; start();
+    });
+    v.addEventListener('playing', () => { error.hidden = true; });
+    body.replaceChildren(v, error);
+    if (!d.open) d.showModal(); start(); d.querySelector('[data-media-close]').focus();
   }
   function makeTextCard(img, index) {
     const file = fileOf(img.getAttribute('src')), item = selectedText[file];

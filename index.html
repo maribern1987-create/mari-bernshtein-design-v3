@@ -489,4 +489,4 @@ const initialRoute=routeFor(location.hash);state.page=initialRoute.page;history.
 dialog.addEventListener('keydown',e=>{if(e.key==='Escape'){e.preventDefault();e.stopPropagation();requestClose();return;}if(e.key!=='Tab')return;const controls=[...dialog.querySelectorAll('a[href],button,input,textarea,select,[tabindex="0"]')].filter(x=>!x.disabled&&!x.closest('[hidden]')&&x.getClientRects().length);if(!controls.length){e.preventDefault();focusDialog();return;}const active=document.activeElement,first=controls[0],last=controls[controls.length-1];if(e.shiftKey&&(active===first||!controls.includes(active))){e.preventDefault();last.focus();}else if(!e.shiftKey&&(active===last||!controls.includes(active))){e.preventDefault();first.focus();}});
 
 })();
-</script><script src="interaction.js?v=b6ca60bfe3"></script><script src="v2-interface.js"></script><script src="v2-media.js"></script></body></html>
+</script><script src="media-images/index.js"></script><script src="media-images.js"></script><script src="interaction.js?v=media-fix1"></script><script src="v2-interface.js"></script><script src="v2-media.js?v=media-fix1"></script></body></html>
